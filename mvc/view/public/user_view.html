@@ -1,0 +1,18 @@
+$def with(user)
+
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" readonly class="form-control" id="name" value="$user.val().get('name')">
+    </div>
+    <div class="form-group">
+        <label for="name">Email</label>
+        <input type="text" readonly class="form-control" id="email" value="$user.val().get('email')">
+    </div>
+    <div class="form-group">
+        <label for="name">Phone</label>
+        <input type="text" readonly class="form-control" id="phone" value="$user.val().get('phone')">
+    </div>
+</form>
+ $user.key()
+ $user.val.get()
