@@ -16,9 +16,18 @@ urls = (
 app = web.application(urls, globals()) 
 render = web.template.render('views/', base="layout")
 
-class Inicio:
+
+class Sensor:
     def GET(self): 
-        return render.recuperar_cuenta() 
+        return render.Sensor() 
+
+    def POST(self, localId): 
+            firebase = pyrebase.initialize_app(token.firebaseConfig) 
+            auth = firebase.auth() 
+            formulario = web.input() 
+            email = formulario.email
+            results = auth.send_password_reset_email(email)
+            print(results)
 
 
 class Userview:                             
