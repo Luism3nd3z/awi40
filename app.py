@@ -23,7 +23,7 @@ class Sensor:
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
             db = firebase.database() 
             users = db.child("sucursal_1").get()
-            return render.bienevenida(users) 
+            return render.sensor(users) 
         except Exception as error: 
             print("Error UsersList.GET: {}".format(error))
 
@@ -146,7 +146,8 @@ class Registro:
             return render.registro(message) 
 
 if __name__ == "__main__":
-    web.config.debug = True
+    web.config.debug = False
+    app.run()
 
 
 
