@@ -8,6 +8,7 @@ urls = (
     '/registro', 'Registro',
     '/bienvenida', 'Bienvenida',
     '/logout', 'Logout',
+    '/sensor', 'Sensor',
     '/recuperar_cuenta', 'Recuperar_cuenta',
     '/users_list','UsersList',
     '/user_view/(.*)','Userview',
