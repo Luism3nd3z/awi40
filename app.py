@@ -18,16 +18,14 @@ render = web.template.render('views/', base="layout")
 
 
 class Sensor:
-    def GET(self): 
-        return render.Sensor() 
-
-    def POST(self, localId): 
+      def GET(self):
+        try:
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
-            auth = firebase.auth() 
-            formulario = web.input() 
-            email = formulario.email
-            results = auth.send_password_reset_email(email)
-            print(results)
+            db = firebase.database() 
+            users = db.child("sucursal_1").get()
+            return render.bienevenida(users) 
+        except Exception as error: 
+            print("Error UsersList.GET: {}".format(error))
 
 
 class Userview:                             

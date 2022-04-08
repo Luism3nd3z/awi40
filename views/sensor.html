@@ -13,9 +13,9 @@
   
     <tr>
   
-      <td id="aaa">{{sensor1}}</td>
+      <td id="sucursal_1">{{sensor1}}</td>
   
-      <td id="bbb">{{sensor2}}</td>
+      <td id="sucursal_2">{{sensor2}}</td>
   
     </tr>
   
@@ -30,8 +30,8 @@
       const response = request.responseText;
       console.log(response);
       const json = JSON.parse(response);
-      document.getElementById('bbb').innerHTML = json["bbb"].temperatura;
-      document.getElementById('aaa').innerHTML = json["aaa"].temperatura;
+      document.getElementById('sucursal_1').innerHTML = json["sucursal_1"].temperatura;
+      document.getElementById('sucursal_2').innerHTML = json["sucursal_2"].temperatura;
     };
     request.send();
   },1000);
