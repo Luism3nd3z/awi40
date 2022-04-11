@@ -22,18 +22,10 @@ class Sensor:
         try:
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
             db = firebase.database() 
-            user = db.child("sucursal_1").get()
-            user = db.child("sucursal_2").get()
-            return render.sensor(user) 
+            return render.sensor() 
         except Exception as error: 
             print("Error sensor.GET: {}".format(error))
 
-        def POST(self): 
-            firebase = pyrebase.initialize_app(token.firebaseConfig) 
-            auth = firebase.auth() 
-            results = auth.send_password_reset_email(email)
-            print(results)
-        
 
 class Userview:                             
     def GET(self,localId):
@@ -102,7 +94,8 @@ class Login:
             formulario = web.input() 
             email = formulario.email 
             password= formulario.password 
-            print(email,password) 
+            nivel= formulario.nivel
+            print(email,password,nivel) 
             user = auth.sign_in_with_email_and_password(email, password) 
             local_id =  (user ['localId'])
             print(local_id)  
@@ -137,12 +130,14 @@ class Registro:
             phone= formulario.phone
             email = formulario.email 
             password= formulario.password 
+            nivel= formulario.nivel
             user = auth.create_user_with_email_and_password(email,password)  
             local_id =  (user ['localId'])
             data = {
             "name": name,
             "phone": phone,
-            "email": email
+            "email": email,
+            "nivel": nivel
             }
             results = db.child("usuarios").child(user['localId']).set(data)
             return web.seeother("/") 

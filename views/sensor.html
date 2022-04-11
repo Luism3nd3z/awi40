@@ -1,42 +1,30 @@
-<h1>index </h1>
 <p>publica</p>
 <table>
     <tr>
-  
-      <th>sensor1</th>
-  
+      <th>sensor1</th>  
       <th>sensor2</th>
-  
-      <th>sensor3</th>
-  
     </tr>
-  
   
     <tr>
-  
-      <td id="aaa">{{sensor1}}</td>
-  
-      <td id="bbb">{{sensor2}}</td>
-  
-      <td id="ccc">{{sensor3}}</td>
-  
+      <td id="sucursal_1">{{sensor1}}</td>
+      <td id="sucursal_2">{{sensor2}}</td>
     </tr>
-  
 </table>
 
 <script>
   window.setInterval(function(){
 
     var request = new XMLHttpRequest();
-    request.open('GET', '/sensores');
+    request.open('GET','https://webapp-20343-default-rtdb.firebaseio.com/sucursales.json');
     request.onload = () => {
       const response = request.responseText;
       console.log(response);
       const json = JSON.parse(response);
-      document.getElementById('bbb').innerHTML = json["bbb"].temperatura;
-      document.getElementById('aaa').innerHTML = json["aaa"].temperatura;
-      document.getElementById('ccc').innerHTML = json["ccc"].temperatura;
+      document.getElementById('sucursal_1').innerHTML = json["sensor_1"].temperatura;
+      document.getElementById('sucursal_1').innerHTML = json["sensor_1"].humedad;
+      document.getElementById('sucursal_2').innerHTML = json["sensor_2"].temperatura;
+      document.getElementById('sucursal_2').innerHTML = json["sensor_2"].humedad;
     };
     request.send();
-  },1000);
+  },100);
 </script>
