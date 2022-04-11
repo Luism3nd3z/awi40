@@ -6,7 +6,8 @@ import json # libreria para manejar el formato JSON
 urls = (
     '/', 'Login',
     '/registro', 'Registro',
-    '/bienvenida', 'Bienvenida',
+    '/bienvenida_administrador', 'Bienvenida_administrador',
+    '/bienvenida_usuario', 'Bienvenida_usuario',
     '/logout', 'Logout',
     '/sensor', 'Sensor',
     '/recuperar_cuenta', 'Recuperar_cuenta',
@@ -69,12 +70,20 @@ class Logout:
         web.setcookie('localid', None) # valor none 
         return web.seeother("/") # redirecinar a login
 
-class Bienvenida:
+class Bienvenida_usuario:
     def GET(self): 
         if ( web.cookies().get('localid')) != "": # cookie
-            return render.bienvenida() # redirecinar a bienevenida
+            return render.bienvenida_usuario() # redirecinar a bienevenida
         else:
             return render.login() # redirecinar a login
+
+class Bienvenida_administrador:
+    def GET(self): 
+        if ( web.cookies().get('localid')) != "": # cookie
+            return render.bienvenida_administrador() # redirecinar a bienevenida
+        else:
+            return render.login() # redirecinar a login
+
 
     
 class Login: 
@@ -91,6 +100,7 @@ class Login:
         try: 
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
             auth = firebase.auth() 
+            db = firebase.database()
             formulario = web.input() 
             email = formulario.email 
             password= formulario.password 
@@ -98,9 +108,13 @@ class Login:
             print(email,password,nivel) 
             user = auth.sign_in_with_email_and_password(email, password) 
             local_id =  (user ['localId'])
-            print(local_id)  
+            print(local_id) 
             web.setcookie('localid', local_id)
-            return web.seeother("bienvenida")
+            busqueda =  db.child("usuarios").child(user['localId']).get()
+            if busqueda.val()['nivel'] == 'administrador':
+                return web.seeother("/bienvenida_administrador")
+            else:
+                return web.seeother("/bienvenida_usuario")
         except Exception as error: # Error en formato JSON
             formato = json.loads(error.args[1])
             error = formato['error'] 
