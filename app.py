@@ -22,10 +22,10 @@ class Sensor:
         try:
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
             db = firebase.database() 
-            users = db.child("sucursal_1").get()
-            return render.sensor(users) 
+            user = db.child("sucursal_1").get()
+            return render.sensor(user) 
         except Exception as error: 
-            print("Error UsersList.GET: {}".format(error))
+            print("Error sensor.GET: {}".format(error))
 
 
 class Userview:                             
@@ -37,6 +37,7 @@ class Userview:
             return render.user_view(user) 
         except Exception as error: 
             print("Error Userview.GET: {}".format(error))
+
 
 class UsersList:                             
     def GET(self):
