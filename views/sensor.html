@@ -1,25 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
 <h1>index </h1>
 <p>publica</p>
 <table>
     <tr>
-      <th>sucursal_1</th>
   
-      <th>sucursal_2</th>
+      <th>sensor1</th>
+  
+      <th>sensor2</th>
+  
+      <th>sensor3</th>
+  
     </tr>
   
-    <tr>
-      <td id="sucursal_1">{{sensor1}}</td>
   
-      <td id="sucursal_2">{{sensor2}}</td>
+    <tr>
+  
+      <td id="aaa">{{sensor1}}</td>
+  
+      <td id="bbb">{{sensor2}}</td>
+  
+      <td id="ccc">{{sensor3}}</td>
+  
     </tr>
   
 </table>
+
 <script>
   window.setInterval(function(){
 
@@ -29,12 +33,10 @@
       const response = request.responseText;
       console.log(response);
       const json = JSON.parse(response);
-      document.getElementById('sucursal_1').innerHTML = json["sucursal_1"].temperatura;
-      document.getElementById('sucursal_2').innerHTML = json["sucursal_2"].temperatura;
+      document.getElementById('bbb').innerHTML = json["bbb"].temperatura;
+      document.getElementById('aaa').innerHTML = json["aaa"].temperatura;
+      document.getElementById('ccc').innerHTML = json["ccc"].temperatura;
     };
     request.send();
   },1000);
 </script>
-
-</body>
-</html>

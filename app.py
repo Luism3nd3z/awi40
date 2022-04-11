@@ -23,10 +23,17 @@ class Sensor:
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
             db = firebase.database() 
             user = db.child("sucursal_1").get()
+            user = db.child("sucursal_2").get()
             return render.sensor(user) 
         except Exception as error: 
             print("Error sensor.GET: {}".format(error))
 
+        def POST(self): 
+            firebase = pyrebase.initialize_app(token.firebaseConfig) 
+            auth = firebase.auth() 
+            results = auth.send_password_reset_email(email)
+            print(results)
+        
 
 class Userview:                             
     def GET(self,localId):
@@ -53,7 +60,7 @@ class UsersList:
 
 class Recuperar_cuenta:
     def GET(self): 
-        return render.recuperar_cuenta() 
+           return render.recuperar_cuenta() 
 
     def POST(self): 
             firebase = pyrebase.initialize_app(token.firebaseConfig) 
@@ -62,6 +69,7 @@ class Recuperar_cuenta:
             email = formulario.email
             results = auth.send_password_reset_email(email)
             print(results)
+
 
     
 class Logout:
