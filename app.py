@@ -104,8 +104,7 @@ class Login:
             formulario = web.input() 
             email = formulario.email 
             password= formulario.password 
-            nivel= formulario.nivel
-            print(email,password,nivel) 
+            print(email,password) 
             user = auth.sign_in_with_email_and_password(email, password) 
             local_id =  (user ['localId'])
             print(local_id) 
@@ -115,6 +114,11 @@ class Login:
                 return web.seeother("/bienvenida_administrador")
             else:
                 return web.seeother("/bienvenida_usuario")
+            if busqueda.val()['status'] =='activo':
+                 return web.seeother("/bienvenida_usuario")
+            else:
+                return web.seeother("/")
+
         except Exception as error: # Error en formato JSON
             formato = json.loads(error.args[1])
             error = formato['error'] 
