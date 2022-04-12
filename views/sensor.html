@@ -1,15 +1,31 @@
+<h1>index </h1>
 <p>publica</p>
-<table>
+<table class="table table-hover" >
+
+  <center>  <h1>sucursal_1</h1>  </center>
+  <tr>
+    <td>HUMEDAD</td>
+    <td>TEMPERATURA</td>
+  </tr>
     <tr>
-      <th>sensor1</th>  
-      <th>sensor2</th>
+      <td id="humedad">{{sucursal_1}}</td>
+      <td id="temperatura">{{sucursal_1}}</td>
     </tr>
-  
-    <tr>
-      <td id="sucursal_1">{{sensor1}}</td>
-      <td id="sucursal_2">{{sensor2}}</td>
-    </tr>
+    <br>
 </table>
+<table class="table table-hover" > 
+  <center>  <h1>sucursal_2</h1>  </center>
+  <tr>
+    <td>HUMEDAD</td>
+    <td>TEMPERATURA</td>
+  </tr>
+  <tr>
+    <td id="humedad_2">{{sucursal_2}}</td>
+    <td id="temperatura_1">{{sucursal_2}}</td>
+
+</tr>
+</table>
+
 
 <script>
   window.setInterval(function(){
@@ -20,10 +36,11 @@
       const response = request.responseText;
       console.log(response);
       const json = JSON.parse(response);
-      document.getElementById('sucursal_1').innerHTML = json["sensor_1"].temperatura;
-      document.getElementById('sucursal_1').innerHTML = json["sensor_1"].humedad;
-      document.getElementById('sucursal_2').innerHTML = json["sensor_2"].temperatura;
-      document.getElementById('sucursal_2').innerHTML = json["sensor_2"].humedad;
+      document.getElementById('temperatura').innerHTML = json["sucursal_1"].temperatura;
+      document.getElementById('humedad').innerHTML = json["sucursal_1"].humedad;
+      document.getElementById('temperatura_1').innerHTML = json["sucursal_2"].temperatura;
+      document.getElementById('humedad_2').innerHTML = json["sucursal_2"].humedad;
+      
     };
     request.send();
   },100);

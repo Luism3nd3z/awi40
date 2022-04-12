@@ -111,7 +111,7 @@ class Login:
             print(local_id) 
             web.setcookie('localid', local_id)
             busqueda =  db.child("usuarios").child(user['localId']).get()
-            if busqueda.val()['nivel'] == 'administrador':
+            if busqueda.val()['nivel'] == 'Administrador':
                 return web.seeother("/bienvenida_administrador")
             else:
                 return web.seeother("/bienvenida_usuario")
