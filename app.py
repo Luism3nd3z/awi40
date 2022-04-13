@@ -4,7 +4,7 @@ import firebase_config as token # archivo con la configuracion de firebase
 import json # libreria para manejar el formato JSON
 
 urls = (
-    '/', 'Login',
+    '/','mvc.controllers.public.login.Login'
     '/registro', 'Registro',
     '/bienvenida_administrador', 'Bienvenida_administrador',
     '/bienvenida_usuario', 'Bienvenida_usuario',

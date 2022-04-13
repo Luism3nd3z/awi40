@@ -5,7 +5,9 @@ $def with (message)
         <title>registro</title>
     </head>
     <body>
+        
         $message
+        <center>
         <h1>Registro</h1>
         <form method="POST">
             <p>NOMBRE</p>
@@ -20,7 +22,20 @@ $def with (message)
             <p>CONTRASEÑA</p>
             <input type="password" name="password" id="password"><br>
             <br>
-            <input type="submit" value="registro"><br>
+           <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+            <select name="nivel" class="form-control" id="input">
+              <option selected>NIVEL...</option>
+              <option id="administrador" value="administrador">ADMINISTRADOR</option>
+              <option id="usuario" value="usuario">USUARIO</option>
+            </select>
+          </div>
+
+          <br>
+          <br>
+            <input type="submit" value="registro" class="btn btn-dark"><br>
+            <center>
         </form>
     </body>
 </html>
+
